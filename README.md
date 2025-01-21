@@ -38,3 +38,5 @@ Podemos usar Jest.js.io, ou Vitest
 Vitest usa por baixo dos panos o esbuild, mesma ferramentas por trás do tsx, e do vite, é um builder muito rápido de ts para js
 
 Teste é composto por enunciado, operação e a validação
+
+Com a ferramenta supertest, seja nossa aplicação feita através de fastify, express, conseguimos testar nossa aplicação sem colocar ela no ar
