@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "tsx watch src/server.ts",
+    "build": "tsup src --out-dir build",
     "knex": "knex",
     "lint": "eslint src --ext .ts --fix",
     "test": "vitest"
@@ -18,6 +19,7 @@
     "@types/supertest": "^6.0.2",
     "eslint": "^9.18.0",
     "supertest": "^7.0.0",
+    "tsup": "^8.3.5",
     "tsx": "^3.12.2",
     "typescript": "^5.7.3",
     "vitest": "^3.0.3"
