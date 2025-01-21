@@ -7,6 +7,14 @@ import { transactionsRoutes } from "./routes/transactions";
 const app = fastify();
 
 app.register(cookie);
+
+app.addHook("preHandler", async (request) => {
+  console.log(
+    `🚀 ~ file: transactions.ts:15 ~ app.addHook ~ request.url:`,
+    request.url
+  );
+});
+
 app.register(transactionsRoutes, {
   prefix: "transactions",
 });
