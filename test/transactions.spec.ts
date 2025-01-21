@@ -1,9 +1,9 @@
-import { expect, it, beforeAll, afterAll, describe } from "vitest";
+import { afterAll, beforeAll, beforeEach, describe, expect, it } from "vitest";
+import { execSync } from "node:child_process";
 import request from "supertest";
 import { app } from "../src/app";
-import { title } from "process";
 
-describe("Transactions Routes", () => {
+describe("Transactions routes", () => {
   beforeAll(async () => {
     await app.ready();
   });
@@ -12,14 +12,20 @@ describe("Transactions Routes", () => {
     await app.close();
   });
 
-  it("should be able to create a new transaction", async () => {
-    const response = await request(app.server).post("/transactions").send({
-      title: "New transaction",
-      amount: 5000,
-      type: "credit",
-    });
+  beforeEach(async () => {
+    execSync("npx knex migrate:rollback --all");
+    execSync("npx knex migrate:latest");
+  });
 
-    expect(response.statusCode).toEqual(201);
+  it("should be able to create a new transaction", async () => {
+    await request(app.server)
+      .post("/transactions")
+      .send({
+        title: "New transaction",
+        amount: 5000,
+        type: "credit",
+      })
+      .expect(201);
   });
 
   it("should be able to list all transactions", async () => {
