@@ -1,5 +1,5 @@
-import type { FastifyInstance } from "fastify";
-import knex from "knex";
+import { FastifyInstance } from "fastify";
+import { knex } from "../database";
 
 export async function transactionsRoutes(app: FastifyInstance) {
   app.get("/hello", async () => {
